@@ -77,7 +77,7 @@ except Exception as e:
     exit(1)
 # Сохраняем в CSV
 # Путь: data/raw/btcusdt_1d.csv
-output_path = 'data/raw/btcusdt_1d.csv'
+output_path = '../data/raw/btcusdt_1d.csv'
 df.to_csv(output_path, index=False)
 print(f'Данные сохранены в {output_path}')
 

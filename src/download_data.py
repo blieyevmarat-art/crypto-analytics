@@ -5,7 +5,7 @@
 
 import yfinance as yf
 import pandas as pd
-
+from pathlib import Path
 
 def download_btc_data(period: str = "2y", interval: str = "1d") -> pd.DataFrame:
     """
@@ -49,14 +49,16 @@ def download_btc_data(period: str = "2y", interval: str = "1d") -> pd.DataFrame:
 
 
 if __name__ == "__main__":
-    # Создаем папки, если их нет
-    from pathlib import Path
-    Path('data/raw').mkdir(parents=True, exist_ok=True)
-    Path('data/processed').mkdir(parents=True, exist_ok=True)
-    
+    # Вычисляем корень проекта (на 2 уровня выше: src/download_data.py -> src/ -> crypto_analytics)
+    BASE_DIR = Path(__file__).resolve().parent.parent
+
+    # Создаем папки
+    (BASE_DIR / 'data' / 'raw').mkdir(parents=True, exist_ok=True)
+    (BASE_DIR / 'data' / 'processed').mkdir(parents=True, exist_ok=True)
+
     df = download_btc_data(period="2y", interval="1d")
 
-    output_path = "data/raw/btcusdt_1d.csv"
+    output_path = BASE_DIR / 'data' / 'raw' / 'btcusdt_1d.csv'
     df.to_csv(output_path, index=False)
 
     print(f"✅ Данные сохранены в {output_path}")
