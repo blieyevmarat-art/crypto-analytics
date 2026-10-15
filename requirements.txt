@@ -18,6 +18,7 @@ peewee==4.5.3
 pillow==12.3.0
 platformdirs==4.13.0
 protobuf==7.36.2
+psycopg2-binary==2.9.13
 pycparser==3.11
 pyparsing==3.3.3
 python-dateutil==2.9.0.post0
@@ -26,6 +27,7 @@ requests==2.34.2
 seaborn==0.13.2
 six==1.17.0
 soupsieve==3.0.3
+SQLAlchemy==2.1.4
 typing_extensions==4.16.0
 urllib3==2.8.0
 websockets==17.2
