@@ -43,7 +43,7 @@ def calculate_metrics(df: pd.DataFrame) -> dict:
     }
     return metrics
 
-def add_moving_averages(df: pd.DataFrame, windows: list = [7, 30]) -> pd.DataFrame:
+def add_moving_averages(df: pd.DataFrame, windows: list = [7,30]) -> pd.DataFrame:
     '''
     Добавляет колонки со скользящими средними.
 
@@ -53,7 +53,7 @@ def add_moving_averages(df: pd.DataFrame, windows: list = [7, 30]) -> pd.DataFra
     '''
     for w in windows:
         df[f'ma_{w}'] = df['close'].rolling(window=w).mean()
-        return df
+    return df
 
 def plot_price_with_ma(df: pd.DataFrame, output_path: Path = None):
     '''Строит график цены закрытия с наложенными скользящими средними.'''
@@ -100,8 +100,10 @@ if __name__ == '__main__':
     print(f'Общая доходность: {metrics["total_return_pct"]:.2f} %')
 
     # 3. Скользящие средние
-    df = add_moving_averages(df, windows=[7])
-    df = add_moving_averages(df, windows=[30])
+    df = add_moving_averages(df, windows=[7, 30])
+    print(f'Колонка в df:', df.columns.tolist())
+    print('ma_7 есть?', 'ma_7' in df.columns)
+    print('ma_30 есть?', 'ma_30' in df.columns)
 
     # 4. График
     chart_path = BASE_DIR / 'data' / 'processed' / 'price_with_ma.png'
